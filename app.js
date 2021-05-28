@@ -7,23 +7,33 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(express.static("public"));
+
 
 
 app.get("/", function(req, res){
-      res.sendFile( __dirname + "/index.html");
+      res.sendFile( __dirname + "/search.html");
     
 })
 
 app.post("/", function(req, res){
 //    console.log(req.body.cityName);
 
+      
       const query = req.body.cityName;
 
       const apiKey = "777684e189d968890a3287156c7224af";
 
       const unit = "metric";
 
-      const url = "https://api.openweathermap.org/data/2.5/weather?q=" + query + "&appid=" + apiKey + "&units=" + unit;
+      const url =
+         "https://api.openweathermap.org/data/2.5/weather?q=" +
+         query +
+         "&appid=" +
+         apiKey +
+         "&units=" +
+         unit;
+   
    
 
       https.get(url, function (response) {
